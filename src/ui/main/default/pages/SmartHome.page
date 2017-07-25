@@ -1,90 +1,114 @@
-<apex:page standardController="Property__c" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false" showHeader="false">
-    
-    <html style="overflow:visible !important;padding:0;margin:0;">
-        <head>
-            <meta name="viewport" content="height=800, initial-scale=1"/>
-            <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SLDS100,'assets/styles/salesforce-lightning-design-system-ltng.css')}"/>
-            <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SmartHomeVFP_styles)}"/>
-        </head>
+<apex:page standardController="Property__c" applyBodyTag="false"
+	applyHtmlTag="false" standardStylesheets="false" showHeader="false">
 
-        <body style="padding:0;margin:0;text-align:center;">
-            
-            <div class="slds">
-            
-                <img src="{!URLFOR($Resource.smarthome,'logo.svg')}" style="height: 100px"/>
-                
-                <div style="margin-top:8px;font-size:1.1rem;font-weight:bold">{!property__c.address__c}, {!property__c.city__c} {!property__c.state__c}</div>
-                
-                <div id="tabMenu" class="tab">
-	                <div class="slds-grid slds-grid--align-center" style="margin-top:20px">
-                        <div class="slds-col--padded">
-                            <a href="#" id="btnTemp">
-                                <img src="{!URLFOR($Resource.smarthome,'temp.svg')}" style="width:80px"/>
-                            </a>
-                        </div>    
-                        <div class="slds-col--padded">
-                            <a href="#" id="btnLights">
-                                <img src="{!URLFOR($Resource.smarthome,'bulb.svg')}" style="width:80px"/>
-                            </a>    
-                        </div>
-                    </div>
-	                <div class="slds-grid slds-grid--align-center" style="margin-top:20px">
-                        <div class="slds-col--padded">
-                            <a href="#" id="btnLock">
-                                <img src="{!URLFOR($Resource.smarthome,'lock.svg')}" style="width:80px"/>
-                            </a>
-                        </div>    
-                        <div class="slds-col--padded">
-                            <img src="{!URLFOR($Resource.smarthome,'garage.svg')}" style="width:80px"/>
-                        </div>
-                    </div>
-	                <div class="slds-grid slds-grid--align-center" style="margin-top:20px">
-                        <div class="slds-col--padded">
-                            <img src="{!URLFOR($Resource.smarthome,'camera.svg')}" style="width:80px"/>
-                        </div>    
-                        <div class="slds-col--padded">
-                            <img src="{!URLFOR($Resource.smarthome,'house.svg')}" style="width:80px"/>
-                        </div>    
-                    </div>
-                </div>    
-    
-                <div id="tabTemp" class="tab hidden">
-                    <div id="actualTemp" style="font-size:104px;font-weight:300">66°</div>
-                    <div id="desiredTemp" style="font-size:36px;font-weight:300">66°</div>
-                    <div style="margin: 4px 0 30px 0"><input id="tempSlider" min='50' max='90' type='range' value='65' style="width:250px"/></div>
-                    <button class="slds-button slds-button--neutral" onclick="closeTab(tabTemp)">Set</button>
-                </div>
-                
-                <div id="tabLights" class="tab hidden">
-                    <div class="slds-grid slds-grid--align-center padding" style="margin:20px 0">
-                    	<div id="lightSliders" style="text-align:right"/>
-                    </div>
-                    <button class="slds-button slds-button--neutral" onclick="closeTab(tabLights)">Done</button>
-                </div>
-                
-                <div id="tabLock" class="panel hidden">
-					<div class="slds-grid slds-grid--align-center" style="margin-top:20px">
-                        <div class="slds-col--padded">
-                            <a href="#" id="btnLockDoor">
-                                <img id="lockDoorImg" src="{!URLFOR($Resource.smarthome,'lock_grey.svg')}" style="width:100px"/>
-                            </a>
-                        </div>    
-                    </div>	
-					<div class="slds-grid slds-grid--align-center" style="margin:20px 0">
-                        <div class="slds-col--padded">
-                            <a href="#" id="btnUnlockDoor">
-                                <img id="unlockDoorImg" src="{!URLFOR($Resource.smarthome,'unlocked_grey.svg')}" style="width:100px"/>
-                            </a>
-                        </div>    
-                    </div>	
-                    <button class="slds-button slds-button--neutral" onclick="closeTab(tabLock)">Done</button>
-                </div>
-                
-            </div>
+	<html style="overflow: visible !important; padding: 0; margin: 0;">
+<head>
+<meta name="viewport" content="height=800, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="{!URLFOR($Resource.SLDS100,'assets/styles/salesforce-lightning-design-system-ltng.css')}" />
+<link rel="stylesheet" type="text/css"
+	href="{!URLFOR($Resource.SmartHomeVFP_styles)}" />
+</head>
 
-            <script src="/canvas/sdk/js/publisher.js"></script>
-            <script src="{!URLFOR($Resource.jquery)}"></script>
-            <script>
+<body style="padding: 0; margin: 0; text-align: center;">
+
+	<div class="slds">
+
+		<img src="{!URLFOR($Resource.smarthome,'logo.svg')}"
+			style="height: 100px" />
+
+		<div style="margin-top: 8px; font-size: 1.1rem; font-weight: bold">{!property__c.address__c},
+			{!property__c.city__c} {!property__c.state__c}</div>
+
+		<div id="tabMenu" class="tab">
+			<div class="slds-grid slds-grid--align-center"
+				style="margin-top: 20px">
+				<div class="slds-col--padded">
+					<a href="#" id="btnTemp"> <img
+						src="{!URLFOR($Resource.smarthome,'temp.svg')}"
+						style="width: 80px" />
+					</a>
+				</div>
+				<div class="slds-col--padded">
+					<a href="#" id="btnLights"> <img
+						src="{!URLFOR($Resource.smarthome,'bulb.svg')}"
+						style="width: 80px" />
+					</a>
+				</div>
+			</div>
+			<div class="slds-grid slds-grid--align-center"
+				style="margin-top: 20px">
+				<div class="slds-col--padded">
+					<a href="#" id="btnLock"> <img
+						src="{!URLFOR($Resource.smarthome,'lock.svg')}"
+						style="width: 80px" />
+					</a>
+				</div>
+				<div class="slds-col--padded">
+					<img src="{!URLFOR($Resource.smarthome,'garage.svg')}"
+						style="width: 80px" />
+				</div>
+			</div>
+			<div class="slds-grid slds-grid--align-center"
+				style="margin-top: 20px">
+				<div class="slds-col--padded">
+					<img src="{!URLFOR($Resource.smarthome,'camera.svg')}"
+						style="width: 80px" />
+				</div>
+				<div class="slds-col--padded">
+					<img src="{!URLFOR($Resource.smarthome,'house.svg')}"
+						style="width: 80px" />
+				</div>
+			</div>
+		</div>
+
+		<div id="tabTemp" class="tab hidden">
+			<div id="actualTemp" style="font-size: 104px; font-weight: 300">66°</div>
+			<div id="desiredTemp" style="font-size: 36px; font-weight: 300">66°</div>
+			<div style="margin: 4px 0 30px 0">
+				<input id="tempSlider" min='50' max='90' type='range' value='65'
+					style="width: 250px" />
+			</div>
+			<button class="slds-button slds-button--neutral"
+				onclick="closeTab(tabTemp)">Set</button>
+		</div>
+
+		<div id="tabLights" class="tab hidden">
+			<div class="slds-grid slds-grid--align-center padding"
+				style="margin: 20px 0">
+				<div id="lightSliders" style="text-align: right" />
+			</div>
+			<button class="slds-button slds-button--neutral"
+				onclick="closeTab(tabLights)">Done</button>
+		</div>
+
+		<div id="tabLock" class="panel hidden">
+			<div class="slds-grid slds-grid--align-center"
+				style="margin-top: 20px">
+				<div class="slds-col--padded">
+					<a href="#" id="btnLockDoor"> <img id="lockDoorImg"
+						src="{!URLFOR($Resource.smarthome,'lock_grey.svg')}"
+						style="width: 100px" />
+					</a>
+				</div>
+			</div>
+			<div class="slds-grid slds-grid--align-center" style="margin: 20px 0">
+				<div class="slds-col--padded">
+					<a href="#" id="btnUnlockDoor"> <img id="unlockDoorImg"
+						src="{!URLFOR($Resource.smarthome,'unlocked_grey.svg')}"
+						style="width: 100px" />
+					</a>
+				</div>
+			</div>
+			<button class="slds-button slds-button--neutral"
+				onclick="closeTab(tabLock)">Done</button>
+		</div>
+
+	</div>
+
+	<script src="/canvas/sdk/js/publisher.js"></script>
+	<script src="{!URLFOR($Resource.jquery)}"></script>
+	<script>
 			setTimeout(function() {
                 Sfdc.canvas.publisher.resize( { height : "470px" } );
             });
@@ -263,7 +287,7 @@
             }                
             </script>
 
-        </body>
-    </html>        
-    
+</body>
+	</html>
+
 </apex:page>

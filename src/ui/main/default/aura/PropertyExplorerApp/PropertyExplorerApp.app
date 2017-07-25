@@ -1,5 +1,5 @@
-<aura:application >
-    
-    <c:PropertyExplorer />
-	
+<aura:application>
+
+	<c:PropertyExplorer />
+
 </aura:application>
